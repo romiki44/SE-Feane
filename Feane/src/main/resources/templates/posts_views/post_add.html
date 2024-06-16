@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- head section -->
+<head th:replace="~{/fragments/head::head}"></head>
+
+<body class="sub_page">
+	<div class="hero_area">
+		<div class="bg-box">
+			<img th:src="@{/images/nav-bg.jpg}" alt="">
+		</div>
+
+		<!-- header section -->
+		<header th:replace="~{/fragments/header::header}"></header>
+	</div>
+
+	<!-- main section -->
+	<section class="menu_section layout_padding">
+		<div class="container">
+			<div class="heading_container">
+			<h1>New Post</h1>
+			</div>
+			<div class="row">
+				<div class="col-6">
+					<div class="form_container">
+						<form action="#" method="post" th:action="@{/posts/add}" th:object="${post}">
+							<input type="hidden" id="account" name="account" th:field="*{account}" /> 
+							<div class="form-group">
+								<input id="title" name="title" th:field="*{title}" type="text" class="form-control" placeholder="Title" />
+								<small class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</small>
+							</div>
+							<div class="form-group">
+								<textarea id="editor" name="body" th:field="*{body}" rows="4" class="form-control" placeholder="Body"></textarea>
+								<small class="text-danger" th:if="${#fields.hasErrors('body')}" th:errors="*{body}">Body Error</small>
+							</div>
+							<div class="btn_box">
+								<button class="btn btn-lg btn-secondary" type="submit">Add Post</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end main section -->
+
+	<!-- footer section -->
+	<footer th:replace="~{/fragments/footer::footer}"></footer>
+</body>
+
+</html>
